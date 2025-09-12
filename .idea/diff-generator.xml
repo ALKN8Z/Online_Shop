@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DiffGenerationConfig">
+    <option name="snapshotDb" value="false" />
+    <option name="snapshotDbValue" value="e438a76a-9a77-4901-b169-4231ea0cb2df" />
+    <option name="snapshotModelValue" value="catalogue-service:catalogue-service" />
+    <option name="sourceModelValue" value="catalogue-service:catalogue-service" />
+    <option name="targetDbValue" value="e438a76a-9a77-4901-b169-4231ea0cb2df" />
+  </component>
+</project>

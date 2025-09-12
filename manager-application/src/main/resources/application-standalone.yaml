@@ -1,0 +1,25 @@
+product-shop:
+  services:
+    catalogue:
+      uri: http://localhost:8081
+    registration-id: manager-application
+
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8082/realms/my-shop
+            user-name-attribute: preferred_username
+        registration:
+          manager-application:
+            provider: keycloak
+            client-id: manager-application
+            client-secret: knQxlDttOzhngIsXYvrcy0kbfZiwD0WD
+            scope:
+              - openid
+              - edit_catalogue
+              - view_catalogue
+              - microprofile-jwt
+

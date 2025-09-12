@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Избранные товары &ndash; FIVEорочка</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      margin-top: 0;
+      color: #222;
+    }
+
+    form {
+      margin: 20px 0;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    .products-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 10px 16px;
+      background: #007BFF;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .products-link:hover {
+      background: #e0a800;
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+
+    .products-link:active {
+      transform: translateY(0);
+    }
+
+    button {
+      background: #007BFF;
+      color: white;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .product-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .product-card {
+      background: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      transition: box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .product-card a {
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      color: #007BFF;
+    }
+
+    .product-card a:hover {
+      text-decoration: underline;
+    }
+
+    .product-card p {
+      margin: 8px 0 0;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <a class="products-link" th:href="@{/customer/products/list}">&larr; Все товары</a>
+  <h1>Избранные товары</h1>
+
+  <form>
+    <label>
+      Фильтр:
+      <input type="text" name="filter" data-th-value="${filter}">
+      <button type="submit">Поиск</button>
+    </label>
+  </form>
+
+  <ul class="product-list">
+    <li class="product-card" data-th-each="product : ${products}">
+      <strong>
+        <a data-th-text="${product.name}"
+           data-th-href="@{/customer/products/{productId}(productId=${product.id})}"></a>
+      </strong>
+      <p data-th-text="${product.description}"></p>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

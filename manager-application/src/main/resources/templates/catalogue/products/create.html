@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый товар</title>
+    <style>
+        body { font-family: "Segoe UI", sans-serif; background: #f0f2f5; margin: 0; padding: 0; }
+        .container { max-width: 700px; margin: 40px auto; background: #fff; padding: 25px; border-radius: 10px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.1); }
+        h1 { color: #1e2a35; }
+        label { display: block; margin: 12px 0 6px; font-weight: bold; }
+        input[type="text"], textarea { width: 100%; padding: 10px; border: 1px solid #bbb; border-radius: 6px; }
+        button { margin-top: 15px; padding: 10px 16px; border: none; border-radius: 6px;
+            background: #28a745; color: #fff; font-weight: bold; cursor: pointer; }
+        button:hover { background: #218838; }
+        .error-list li { color: #dc3545; font-weight: bold; }
+        a { text-decoration: none; color: #007bff; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a th:href="@{/catalogue/products/list}">&larr; К списку товаров</a>
+    <h1>Создать новый товар</h1>
+
+    <div th:if="${errors}">
+        <ul class="error-list">
+            <li th:each="error: ${errors}" th:text="${error}"></li>
+        </ul>
+    </div>
+
+    <form method="post" th:action="@{/catalogue/products/create}">
+        <label>Название товара:
+        <input type="text" name="name" th:value="${payload?.name}">
+        </label>
+
+        <label>Описание товара:
+        <textarea name="description" th:text="${payload?.description}"></textarea>
+        </label>
+        <button type="submit">Создать товар</button>
+    </form>
+</div>
+</body>
+</html>

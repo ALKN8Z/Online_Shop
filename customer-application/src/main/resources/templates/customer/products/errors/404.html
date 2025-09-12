@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Товар не найден</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .error-container {
+            text-align: center;
+            background: #fff;
+            padding: 40px 60px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 500px;
+        }
+
+        h1 {
+            font-size: 64px;
+            margin: 0;
+            color: #d9534f; /* красный акцент */
+        }
+
+        h2 {
+            margin-top: 10px;
+            font-size: 24px;
+            color: #444;
+        }
+
+        .error-message {
+            margin-top: 15px;
+            font-style: italic;
+            color: #666;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 10px 20px;
+            background: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        a:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="error-container">
+    <h1>404</h1>
+    <h2>Товар не найден</h2>
+    <p class="error-message" data-th-text="#{${error}}"></p>
+    <a th:href="@{/customer/products/list}">⬅ Вернуться к списку товаров</a>
+</div>
+</body>
+</html>

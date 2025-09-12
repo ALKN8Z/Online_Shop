@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${product.name}"></title>
+    <style>
+        body { font-family: "Segoe UI", sans-serif; background: #f0f2f5; margin: 0; padding: 0; color: #222; }
+        .container { max-width: 800px; margin: 40px auto; background: #fff; padding: 25px; border-radius: 10px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.1); }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        h1 { margin-top: 0; color: #1e2a35; }
+        ul { list-style: none; padding: 0; }
+        li { margin: 10px 0; }
+        .btn { display: inline-block; margin-top: 15px; padding: 8px 14px; border-radius: 6px;
+            text-decoration: none; font-weight: bold; }
+        .btn-edit { background: #ffc107; color: #222; }
+        .btn-edit:hover { background: #e0a800; }
+        .btn-delete { background: #dc3545; color: #fff; border: none; cursor: pointer; }
+        .btn-delete:hover { background: #c82333; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a data-th-href="@{/catalogue/products/list}">&larr; К списку товаров</a>
+    <h1 th:text="${product.name}"></h1>
+
+    <ul>
+        <li><strong>ID товара:</strong> <span th:text="${product.id}"></span></li>
+        <li><strong>Название товара:</strong> <span th:text="${product.name}"></span></li>
+        <li><strong>Описание товара:</strong> <span th:text="${product.description}"></span></li>
+    </ul>
+
+    <a class="btn btn-edit" data-th-href="@{/catalogue/products/{productId}/edit(productId=${product.id})}">✏ Изменить</a>
+
+    <form method="post" th:action="@{/catalogue/products/{productId}/delete(productId=${product.id})}" style="display:inline-block;">
+        <button class="btn btn-delete" type="submit">🗑 Удалить</button>
+    </form>
+</div>
+</body>
+</html>

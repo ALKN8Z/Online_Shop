@@ -1,0 +1,14 @@
+product-shop:
+  services:
+    catalogue:
+      uri: http://localhost:8081
+
+server:
+  port: 8083
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    reactor.netty.http.client: DEBUG
+    org.springframework.web.reactive.function.client.ExchangeFunctions: TRACE
+

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${product.name}"></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        a.back-link {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        a.back-link:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #222;
+        }
+
+        h3[th\\:if] {
+            margin: 10px 0;
+            font-weight: bold;
+            color: #ffbf00;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        ul li {
+            margin: 8px 0;
+            padding: 8px;
+            background: #f0f0f0;
+            border-radius: 6px;
+        }
+
+        form {
+            margin: 15px 0;
+        }
+
+        button {
+            background: #007BFF;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-family: inherit;
+        }
+
+        label {
+            margin-right: 8px;
+        }
+
+        .error-list li {
+            color: #d9534f;
+            font-size: 14px;
+        }
+
+        .review-card {
+            padding: 15px;
+            background: #fafafa;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #eee;
+        }
+
+        .review-card h3 {
+            margin: 0 0 8px;
+            color: #ff9800;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a class="back-link" data-th-href="@{/customer/products/list}">&larr; К списку товаров</a>
+
+    <h1 th:text="${product.name}"></h1>
+    <h3 th:if="${inFavourite}">⭐ Избранный товар</h3>
+
+    <ul>
+        <li><strong>ID товара:</strong> <span th:text="${product.id}"></span></li>
+        <li><strong>Название товара:</strong> <span th:text="${product.name}"></span></li>
+        <li><strong>Описание товара:</strong> <span th:text="${product.description}"></span></li>
+    </ul>
+
+    <form th:method="post" th:action="@{/customer/products/{productId}/add-favourite-product(productId=${product.id})}" th:if="!${inFavourite}">
+        <button type="submit">➕ Добавить в избранное</button>
+    </form>
+
+    <form th:method="post" th:action="@{/customer/products/{productId}/remove-favourite-product(productId=${product.id})}" th:if="${inFavourite}">
+        <button type="submit" style="background:#d9534f;">❌ Удалить из избранного</button>
+    </form>
+
+    <h2>Оставить отзыв</h2>
+    <div data-th-if="${errors}">
+        <ul class="error-list">
+            <li data-th-each="error : ${errors}" data-th-text="${error}"></li>
+        </ul>
+    </div>
+
+    <form method="post" data-th-action="@{/customer/products/{productId}/create-review(productId=${product.id})}">
+        <div>
+            <label><input type="radio" name="rating" value="1"> 1</label>
+            <label><input type="radio" name="rating" value="2"> 2</label>
+            <label><input type="radio" name="rating" value="3"> 3</label>
+            <label><input type="radio" name="rating" value="4"> 4</label>
+            <label><input type="radio" name="rating" value="5"> 5</label>
+        </div>
+        <br>
+        <label>
+            Отзыв:<br>
+            <textarea name="content"></textarea>
+        </label><br><br>
+        <button type="submit">📩 Отправить отзыв</button>
+    </form>
+
+    <h2>Отзывы пользователей</h2>
+    <div data-th-each="review : ${reviews}" class="review-card">
+        <h3>Оценка: [[${review.rating}]] ★</h3>
+        <p data-th-text="${review.content}"></p>
+    </div>
+</div>
+</body>
+</html>
