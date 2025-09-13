@@ -1,10 +1,11 @@
-package org.example.customerapplication.service;
+package org.example.feedbackservice.service;
 
-import org.example.customerapplication.entity.FavouriteProduct;
+import org.example.feedbackservice.entity.FavouriteProduct;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface FavouriteProductService {
+
     Mono<FavouriteProduct> addProductToFavourites(int productId);
 
     Mono<Void> removeProductFromFavourites(int productId);

@@ -152,7 +152,7 @@
         <br>
         <label>
             Отзыв:<br>
-            <textarea name="content"></textarea>
+            <textarea name="content" th:text="${payload?.content}"></textarea>
         </label><br><br>
         <button type="submit">📩 Отправить отзыв</button>
     </form>

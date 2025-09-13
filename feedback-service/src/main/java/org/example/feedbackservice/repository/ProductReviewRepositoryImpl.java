@@ -1,7 +1,7 @@
-package org.example.customerapplication.repository;
+package org.example.feedbackservice.repository;
 
 import lombok.RequiredArgsConstructor;
-import org.example.customerapplication.entity.ProductReview;
+import org.example.feedbackservice.entity.ProductReview;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -27,4 +27,5 @@ public class ProductReviewRepositoryImpl implements ProductReviewRepository {
         return Flux.fromIterable(productReviews)
                 .filter(productReview -> productReview.getProductId() == productId);
     }
+
 }

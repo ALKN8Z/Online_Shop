@@ -1,8 +1,8 @@
-package org.example.customerapplication.service;
+package org.example.feedbackservice.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.customerapplication.entity.FavouriteProduct;
-import org.example.customerapplication.repository.FavouriteProductRepository;
+import org.example.feedbackservice.entity.FavouriteProduct;
+import org.example.feedbackservice.repository.FavouriteProductRepository;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -34,4 +34,5 @@ public class FavouriteProductServiceImpl implements FavouriteProductService {
     public Flux<FavouriteProduct> findAllFavouriteProducts() {
         return favouriteProductRepository.findAll();
     }
+
 }

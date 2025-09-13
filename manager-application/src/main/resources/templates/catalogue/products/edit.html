@@ -3,27 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="'Изменить ' + ${product.name}"></title>
+    <style>
+        body { font-family: "Segoe UI", sans-serif; background: #f0f2f5; margin: 0; padding: 0; }
+        .container { max-width: 700px; margin: 40px auto; background: #fff; padding: 25px; border-radius: 10px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.1); }
+        h1 { color: #1e2a35; }
+        label { display: block; margin: 12px 0 6px; font-weight: bold; }
+        input[type="text"], textarea { width: 100%; padding: 10px; border: 1px solid #bbb; border-radius: 6px; }
+        button { margin-top: 15px; padding: 10px 16px; border: none; border-radius: 6px;
+            background: #28a745; color: #fff; font-weight: bold; cursor: pointer; }
+        button:hover { background: #218838; }
+        .error-list li { color: #dc3545; font-weight: bold; }
+        a { text-decoration: none; color: #007bff; }
+    </style>
 </head>
 <body>
+<div class="container">
 <a th:href="@{/catalogue/products/{productId}(productId=${product.id})}">&larr; К товару</a>
 <h1 th:text="'Изменить '  +  ${product.name}"></h1>
 
-<div th:if="${errors}">
+<div th:if="${errors}" class="error-list">
     <ul>
         <li th:each="error: ${errors}" th:text="${error}" style="color: orangered"></li>
     </ul>
 </div>
-<form method="post" th:action="@{/catalogue/products/{productId}/edit(productId=${product.id})}" >
-    <label>Название товара: <br>
-        <input type="text" name="name" data-th-value="${payload != null ? payload.name : product.name}">
-    </label>
+    <form method="post" th:action="@{/catalogue/products/{productId}/edit(productId=${product.id})}" >
+        <label>Название товара: <br>
+            <input type="text" name="name" data-th-value="${payload != null ? payload.name : product.name}">
+        </label>
 
-    <br>
-    <label>Описание товара: <br>
-        <textarea name="description" data-th-text="${payload != null ? payload.description : product.description}"></textarea>
-    </label><br>
-    <button type="submit">Изменить товар</button>
+        <br>
+        <label>Описание товара: <br>
+            <textarea name="description" data-th-text="${payload != null ? payload.description : product.description}"></textarea>
+        </label><br>
+        <button type="submit">Изменить товар</button>
 
-</form>
+    </form>
+</div>
 </body>
 </html>

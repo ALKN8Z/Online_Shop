@@ -1,7 +1,7 @@
 package org.example.customerapplication.config;
 
-import org.example.customerapplication.client.ProductsWebClient;
-import org.example.customerapplication.client.ProductsWebClientImpl;
+import lombok.RequiredArgsConstructor;
+import org.example.customerapplication.client.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +16,24 @@ public class ClientBeans {
     {
         return new ProductsWebClientImpl(WebClient.builder()
                 .baseUrl(catalogueBaseUrl)
+                .build());
+    }
+
+    @Bean
+    public FavouriteProductsWebClient favouriteProductsWebClient(
+            @Value("${product-shop.services.feedback.uri:http://localhost:8084}") String feedbackBaseUrl)
+    {
+        return new FavouriteProductsWebClientImpl(WebClient.builder()
+                .baseUrl(feedbackBaseUrl)
+                .build());
+    }
+
+    @Bean
+    public ProductsReviewsWebClient productsReviewsWebClient(
+            @Value("${product-shop.services.feedback.uri:http://localhost:8084}") String feedbackBaseUrl)
+    {
+        return new ProductsReviewsWebClientImpl(WebClient.builder()
+                .baseUrl(feedbackBaseUrl)
                 .build());
     }
 }

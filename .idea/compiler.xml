@@ -10,9 +10,10 @@
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
         </processorPath>
+        <module name="customer-application" />
+        <module name="feedback-service" />
         <module name="manager-application" />
         <module name="catalogue-service" />
-        <module name="customer-application" />
       </profile>
     </annotationProcessing>
   </component>
@@ -20,6 +21,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="catalogue-service" options="-parameters" />
       <module name="customer-application" options="-parameters" />
+      <module name="feedback-service" options="-parameters" />
       <module name="manager-application" options="-parameters" />
     </option>
   </component>

@@ -1,9 +1,9 @@
-package org.example.customerapplication.service;
+package org.example.feedbackservice.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.customerapplication.entity.ProductReview;
-import org.example.customerapplication.entity.payload.NewProductReviewPayload;
-import org.example.customerapplication.repository.ProductReviewRepository;
+import org.example.feedbackservice.entity.ProductReview;
+import org.example.feedbackservice.entity.payload.NewProductReviewPayload;
+import org.example.feedbackservice.repository.ProductReviewRepository;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

@@ -1,14 +1,17 @@
-package org.example.customerapplication.repository;
+package org.example.feedbackservice.repository;
 
 import lombok.RequiredArgsConstructor;
-import org.example.customerapplication.entity.FavouriteProduct;
+import org.example.feedbackservice.entity.FavouriteProduct;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class FavouriteProductRepositoryImpl implements FavouriteProductRepository {
 
     private final List<FavouriteProduct> favouriteProducts = Collections.synchronizedList(new LinkedList<>());
@@ -36,4 +39,5 @@ public class FavouriteProductRepositoryImpl implements FavouriteProductRepositor
     public Flux<FavouriteProduct> findAll() {
         return Flux.fromIterable(favouriteProducts);
     }
+
 }
