@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -16,4 +17,7 @@ public class ProductReview {
     private int productId;
     private Integer rating;
     private String content;
+    private String userId;
+    private String ownerName;
+    private LocalDateTime createdAt;
 }

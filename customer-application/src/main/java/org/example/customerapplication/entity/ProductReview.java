@@ -4,14 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class ProductReview {
-    UUID id;
-    int productId;
-    Integer rating;
-    String content;
+public record ProductReview(
+        UUID id,
+        int productId,
+        int rating,
+        String content,
+        String ownerName,
+        LocalDateTime createdAt) {
 }

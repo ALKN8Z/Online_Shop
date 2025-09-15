@@ -42,7 +42,7 @@ public class ProductsController {
                                              @RequestParam(name = "filter", required = false) String filter) {
         model.addAttribute("filter", filter);
         return favouriteProductsWebClient.getAllFavouriteProducts()
-                .map(FavouriteProduct::getProductId)
+                .map(FavouriteProduct::productId)
                 .collectList()
                 .flatMap(favouriteProducts -> productsClient.findAllProducts(filter)
                         .filter(product -> favouriteProducts.contains(product.id()))

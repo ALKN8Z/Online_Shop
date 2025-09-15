@@ -6,10 +6,4 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class FavouriteProduct {
-    private UUID id;
-    private int productId;
-}
+public record FavouriteProduct (UUID id, int productId) {}

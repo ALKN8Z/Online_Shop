@@ -8,6 +8,25 @@ product-shop:
 server:
   port: 8083
 
+
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8082/realms/my-shop
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            client-id: customer-application
+            client-secret: ff6SBuvN18lZGQHT2OdAqxJlQJGHNbUq
+            scope:
+              - openid
+              - view_catalogue
+
+
+
 logging:
   level:
     org.springframework.web: DEBUG

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
@@ -17,13 +19,17 @@ public class ProductReviewServiceImpl implements ProductReviewService {
     private final ProductReviewRepository productReviewRepository;
 
     @Override
-    public Mono<ProductReview> createNewProductReview(int productId, NewProductReviewPayload payload) {
+    public Mono<ProductReview> createNewProductReview(
+            int productId, NewProductReviewPayload payload, String userId, String ownerName, LocalDateTime createdAt) {
         return productReviewRepository.save(
                 new ProductReview(
                         UUID.randomUUID(),
                         productId,
                         payload.rating(),
-                        payload.content()));
+                        payload.content(),
+                        userId,
+                        ownerName,
+                        createdAt));
     }
 
     @Override

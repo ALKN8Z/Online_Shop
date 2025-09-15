@@ -8,11 +8,14 @@ import org.example.customerapplication.client.ProductsWebClient;
 import org.example.customerapplication.client.exception.ClientBadRequestException;
 import org.example.customerapplication.entity.Product;
 import org.example.customerapplication.controller.payload.NewProductReviewPayload;
+import org.springframework.security.web.server.csrf.CsrfToken;
+import org.springframework.security.web.reactive.result.view.CsrfRequestDataValueProcessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 import java.util.NoSuchElementException;
@@ -39,6 +42,17 @@ public class ProductController {
         return favouriteProductsWebClient.getFavouriteProduct(productId)
                 .map(favouriteProduct -> true)
                 .defaultIfEmpty(false);
+    }
+
+    @ModelAttribute
+    public Mono<CsrfToken> loadCsrfToken(ServerWebExchange exchange) {
+        Mono<CsrfToken> attribute = exchange.getAttribute(CsrfToken.class.getName());
+        if (attribute != null) {
+            return attribute.doOnSuccess(token -> {
+                exchange.getAttributes().put(CsrfRequestDataValueProcessor.DEFAULT_CSRF_ATTR_NAME, token);
+            });
+        }
+        return Mono.empty();
     }
 
     @GetMapping
