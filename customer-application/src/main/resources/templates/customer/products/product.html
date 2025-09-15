@@ -6,142 +6,215 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #f7f7f7;
             margin: 0;
             padding: 0;
             color: #333;
+            background: linear-gradient(90deg, #ff7e5f, #feb47b);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 42px;
+            font-weight: bold;
+            margin: 30px 0 20px;
+            font-family: 'Arial Black', sans-serif;
+        }
+
+        .logo-five {
+            background: linear-gradient(90deg, #ffffff, wheat);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-orochka {
+            background: linear-gradient(90deg, #ffb07c, #ffd39f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .container {
             max-width: 900px;
-            margin: 30px auto;
-            padding: 20px;
-            background: #fff;
+            margin: 0 auto 40px;
+            padding: 35px;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
         }
 
-        a.back-link {
-            text-decoration: none;
-            color: #007BFF;
-            font-weight: bold;
+        .back-link {
             display: inline-block;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #ff7e5f;
+            text-decoration: none;
         }
-        a.back-link:hover {
+        .back-link:hover {
             text-decoration: underline;
         }
 
-        h1 {
-            margin-top: 0;
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .product-info h1 {
+            margin: 0 0 10px 0;
             color: #222;
         }
 
-        h3[th\\:if] {
-            margin: 10px 0;
-            font-weight: bold;
-            color: #ffbf00;
-        }
-
-        ul {
+        .product-info ul {
             list-style: none;
             padding: 0;
-            margin: 15px 0;
+            margin: 0;
         }
-
-        ul li {
-            margin: 8px 0;
+        .product-info ul li {
+            margin: 5px 0;
             padding: 8px;
-            background: #f0f0f0;
+            background: rgba(255,255,255,0.95);
             border-radius: 6px;
+            border: 1px solid #ffe0b2;
         }
 
-        form {
-            margin: 15px 0;
+        .favourite-buttons form {
+            margin: 5px 0;
         }
 
         button {
-            background: #007BFF;
+            background: linear-gradient(90deg, #ff7e5f, #feb47b);
             color: white;
-            padding: 10px 16px;
+            padding: 10px 18px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
-            transition: background 0.2s;
+            transition: transform 0.1s, box-shadow 0.2s;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        button.remove-favourite {
+            background: #d9534f;
         }
 
-        button:hover {
-            background: #0056b3;
+        h2 {
+            margin-top: 40px;
+            margin-bottom: 15px;
+            color: #222;
+        }
+
+        form.review-form {
+            margin-bottom: 40px;
+        }
+
+        form.review-form div {
+            margin-bottom: 10px;
         }
 
         textarea {
             width: 100%;
-            min-height: 80px;
-            padding: 8px;
-            border-radius: 6px;
+            min-height: 100px;
+            padding: 12px;
+            border-radius: 8px;
             border: 1px solid #ccc;
             font-family: inherit;
+            font-size: 15px;
+            line-height: 1.5;
+            resize: none;
+            background: rgba(255,255,255,0.95);
         }
 
-        label {
-            margin-right: 8px;
-        }
-
-        .error-list li {
-            color: #d9534f;
-            font-size: 14px;
+        textarea:focus {
+            border-color: #ff7e5f;
+            box-shadow: 0 0 6px rgba(255,126,95,0.2);
+            outline: none;
+            background: #fff;
         }
 
         .review-card {
             padding: 15px;
-            background: #fafafa;
+            background: rgba(255,255,255,0.95);
             border-radius: 8px;
             margin: 15px 0;
-            border: 1px solid #eee;
+            border: 1px solid #ffe0b2;
         }
 
-        .review-card h3 {
-            margin: 0 0 8px;
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .review-meta {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .review-owner {
+            font-weight: bold;
+            font-size: 16px;
+            color: #ff7e5f;
+            margin: 0;
+        }
+
+        .review-rating {
+            margin: 4px 0 0;
             color: #ff9800;
+            font-size: 15px;
         }
 
-        hr {
-            border: 0;
-            border-top: 1px solid #ddd;
-            margin: 20px 0;
+        .review-date {
+            font-size: 13px;
+            color: #777;
+            white-space: nowrap;
+        }
+
+        .review-content {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #444;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: pre-wrap;
         }
     </style>
 </head>
 <body>
+<div class="logo">
+    <span class="logo-five">FIVE</span><span class="logo-orochka">ОРОЧКА</span>
+</div>
+
 <div class="container">
     <a class="back-link" data-th-href="@{/customer/products/list}">&larr; К списку товаров</a>
 
-    <h1 th:text="${product.name}"></h1>
-    <h3 th:if="${inFavourite}">⭐ Избранный товар</h3>
-
-    <ul>
-        <li><strong>ID товара:</strong> <span th:text="${product.id}"></span></li>
-        <li><strong>Название товара:</strong> <span th:text="${product.name}"></span></li>
-        <li><strong>Описание товара:</strong> <span th:text="${product.description}"></span></li>
-    </ul>
-
-    <form th:method="post" th:action="@{/customer/products/{productId}/add-favourite-product(productId=${product.id})}" th:if="!${inFavourite}">
-        <button type="submit">➕ Добавить в избранное</button>
-    </form>
-
-    <form th:method="post" th:action="@{/customer/products/{productId}/remove-favourite-product(productId=${product.id})}" th:if="${inFavourite}">
-        <button type="submit" style="background:#d9534f;">❌ Удалить из избранного</button>
-    </form>
-
-    <h2>Оставить отзыв</h2>
-    <div data-th-if="${errors}">
-        <ul class="error-list">
-            <li data-th-each="error : ${errors}" data-th-text="${error}"></li>
-        </ul>
+    <div class="product-header">
+        <div class="product-info">
+            <h1 th:text="${product.name}"></h1>
+            <h3 th:if="${inFavourite}">⭐ Избранный товар</h3>
+            <ul>
+                <li><strong>ID товара:</strong> <span th:text="${product.id}"></span></li>
+                <li><strong>Название товара:</strong> <span th:text="${product.name}"></span></li>
+                <li><strong>Описание товара:</strong> <span th:text="${product.description}"></span></li>
+            </ul>
+        </div>
+        <div class="favourite-buttons">
+            <form th:method="post" th:action="@{/customer/products/{productId}/add-favourite-product(productId=${product.id})}" th:if="!${inFavourite}">
+                <button type="submit">➕ Добавить в избранное</button>
+            </form>
+            <form th:method="post" th:action="@{/customer/products/{productId}/remove-favourite-product(productId=${product.id})}" th:if="${inFavourite}">
+                <button type="submit" class="remove-favourite">❌ Удалить из избранного</button>
+            </form>
+        </div>
     </div>
 
-    <form method="post" data-th-action="@{/customer/products/{productId}/create-review(productId=${product.id})}">
+    <h2>Оставить отзыв</h2>
+    <form class="review-form" method="post" data-th-action="@{/customer/products/{productId}/create-review(productId=${product.id})}">
         <div>
             <label><input type="radio" name="rating" value="1"> 1</label>
             <label><input type="radio" name="rating" value="2"> 2</label>
@@ -149,19 +222,34 @@
             <label><input type="radio" name="rating" value="4"> 4</label>
             <label><input type="radio" name="rating" value="5"> 5</label>
         </div>
-        <br>
         <label>
             Отзыв:<br>
-            <textarea name="content" th:text="${payload?.content}"></textarea>
-        </label><br><br>
+            <textarea name="content" th:text="${payload?.content}" placeholder="Напишите свой отзыв..."></textarea>
+        </label><br>
         <button type="submit">📩 Отправить отзыв</button>
     </form>
 
     <h2>Отзывы пользователей</h2>
     <div data-th-each="review : ${reviews}" class="review-card">
-        <h3>Оценка: [[${review.rating}]] ★</h3>
-        <p data-th-text="${review.content}"></p>
+        <div class="review-header">
+            <div class="review-meta">
+                <h2 class="review-owner">[[${review.ownerName}]]</h2>
+                <div class="review-rating">Оценка: [[${review.rating}]] ★</div>
+            </div>
+            <div class="review-date">
+                📅 [[${#temporals.format(review.createdAt, 'dd.MM.yyyy HH:mm')}]]
+            </div>
+        </div>
+        <p class="review-content" data-th-text="${review.content}"></p>
     </div>
 </div>
+
+<script>
+    document.addEventListener("input", function(event) {
+        if(event.target.tagName.toLowerCase() !== "textarea") return;
+        event.target.style.height = "auto";
+        event.target.style.height = (event.target.scrollHeight) + "px";
+    });
+</script>
 </body>
 </html>
