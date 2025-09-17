@@ -14,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.mock.http.server.reactive.MockServerHttpResponse;
 import org.springframework.security.core.parameters.P;
 import org.springframework.security.web.reactive.result.view.CsrfRequestDataValueProcessor;
@@ -277,13 +278,15 @@ class ProductControllerTest {
     @Test
     void handleNoSuchException_ReturnErrorPage(){
         Model model = new ConcurrentModel();
+        ServerHttpResponse response = new MockServerHttpResponse();
 
         String result = productController
-                .handleNoSuchElementException(new NoSuchElementException("Товар не найден"), model);
+                .handleNoSuchElementException(new NoSuchElementException("Товар не найден"), model, response);
 
         assertEquals("customer/products/errors/404", result);
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals("Товар не найден", model.getAttribute("error"));
     }
-    
+
 
 }

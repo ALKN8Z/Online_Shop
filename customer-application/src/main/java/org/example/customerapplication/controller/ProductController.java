@@ -1,5 +1,6 @@
 package org.example.customerapplication.controller;
 
+import jdk.jshell.Snippet;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.customerapplication.client.FavouriteProductsWebClient;
@@ -8,6 +9,9 @@ import org.example.customerapplication.client.ProductsWebClient;
 import org.example.customerapplication.client.exception.ClientBadRequestException;
 import org.example.customerapplication.entity.Product;
 import org.example.customerapplication.controller.payload.NewProductReviewPayload;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.security.web.server.csrf.CsrfToken;
 import org.springframework.security.web.reactive.result.view.CsrfRequestDataValueProcessor;
 import org.springframework.stereotype.Controller;
@@ -102,8 +106,10 @@ public class ProductController {
     }
 
     @ExceptionHandler(NoSuchElementException.class)
-    public String handleNoSuchElementException(NoSuchElementException e, Model model) {
+    public String handleNoSuchElementException(NoSuchElementException e, Model model,
+                                               ServerHttpResponse response) {
         model.addAttribute("error", e.getMessage());
+        response.setStatusCode(HttpStatus.NOT_FOUND);
         return "customer/products/errors/404";
     }
 
